@@ -1,1 +1,3 @@
-# TODO: Test Application
+- [ ] Run the application with a variety of different inputs
+- [ ] Verify that the application correctly filters images and returns the expected results
+- [ ] Check for any errors or exceptions that occur during execution
