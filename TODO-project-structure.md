@@ -1,1 +1,4 @@
-# TODO: Project Structure
+- [ ] Create a new directory for the project
+- [ ] Inside the project directory, create separate directories for the main code, tests, and any additional resources
+- [ ] Create a .gitignore file to exclude unnecessary files from the GitHub repository
+- [ ] Initialize a new Git repository in the project directory
