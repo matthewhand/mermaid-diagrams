@@ -1,0 +1,381 @@
+Here's the updated project layout with values moved to a separate configuration file:
+
+Project structure:
+
+```
+Project/
+|-- bin/
+|   |-- project
+|
+|-- project/
+|   |-- config/
+|   |   |-- __init__.py
+|   |   |-- settings.py
+|   |
+|   |-- test/
+|   |   |-- __init__.py
+|   |   |-- test_main.py
+|   |   
+|   |-- utils/
+|   |   |-- __init__.py
+|   |   |-- helpers.py
+|   |
+|   |-- __init__.py
+|   |-- main.py
+|
+|-- .env
+|-- requirements.txt
+|-- setup.py
+|-- README
+```
+
+Change the files accordingly:
+
+Create a file named `project/config/settings.py`:
+
+```python
+# Defaults
+GITHUB_URL = "https://github.com/matthewhand/aws-svg-icons/tree/main/docs"
+PROMPT = "images relating to my AWS webapp that uses services such as: lambda, dynamodb, eventbus, s3 and resources such as: certificate for elastic load balancer."
+```
+
+Modify the `project/main.py`:
+
+```python
+import os
+import sys
+import re
+from github import Github
+import openai
+from dotenv import load_dotenv
+from utils.helpers import get_repo_from_url, list_images_recursive, filter_images_with_openai, parse_arguments
+from config.settings import GITHUB_URL, PROMPT
+
+# Load environment variables
+load_dotenv()
+
+# Check if GITHUB_TOKEN exists
+if "GITHUB_TOKEN" not in os.environ:
+    raise ValueError("GITHUB_TOKEN is missing.")
+
+# Set OpenAI API Key
+if "OPENAI_API_KEY" not in os.environ:
+    raise ValueError("OPENAI_API_KEY is missing.")
+else:
+    openai.api_key = os.environ["OPENAI_API_KEY"]
+
+# Get arguments
+github_url, prompt = parse_arguments(GITHUB_URL, PROMPT)
+
+# Authenticate with GitHub API
+g = Github(os.environ["GITHUB_TOKEN"])
+repo = get_repo_from_url(g, github_url)
+
+# Get image file list
+image_files = list_images_recursive(repo)
+
+# Use OpenAI API to filter images
+filtered_image_files = filter_images_with_openai(image_files, prompt, openai)
+
+# Print the result
+print("Filtered images:")
+for image in filtered_image_files:
+    print(image)
+```
+
+Modify the `project/utils/helpers.py` and move the `parse_arguments` function contents:
+
+```python
+import sys
+from config.settings import GITHUB_URL, PROMPT
+
+def parse_arguments(default_github_url, default_prompt):
+    github_url = default_github_url
+    prompt = default_prompt
+  
+    if len(sys.argv) > 1:
+        github_url = sys.argv[1]
+
+    if len(sys.argv) > 2:
+        prompt = sys.argv[2]
+
+    return github_url, prompt
+
+# Rest of the functions (get_repo_from_url, list_images_recursive, filter_images_with_openai)
+```
+
+Include the environment variables in the `.env` file:
+
+```
+GITHUB_TOKEN=your_github_token
+OPENAI_API_KEY=your_openai_api_key
+```
+
+Make sure to add `.env` to your `.gitignore` file if the project is under version control to keep your secrets safe.
+
+This layout separates the configurations and settings, making it easier to manage and maintain. You can run the program with:
+
+```bash
+python project/main.py
+```
+
+Please find the consolidated project structure and code below.
+
+Project structure:
+
+```
+Project/
+|-- bin/
+|   |-- project
+|
+|-- project/
+|   |-- config/
+|   |   |-- __init__.py
+|   |   |-- settings.py
+|   |
+|   |-- test/
+|   |   |-- __init__.py
+|   | |-- test_main.py
+|   |   
+|   |-- utils/
+|   |   |-- __init__.py
+|   |   |-- helpers.py
+|   |
+|   |-- __init__.py
+|   |-- main.py
+|
+|-- .env
+|-- requirements.txt
+|-- setup.py
+|-- README
+```
+
+Create a `project/config/settings.py` file:
+
+```python
+# Defaults
+GITHUB_URL = "https://github.com/matthewhand/aws-svg-icons/tree/main/docs"
+PROMPT = "images relating to my AWS webapp that uses services such as: lambda, dynamodb, eventbus, s3 and resources such as: certificate for elastic load balancer."
+```
+
+Add the `project/utils/helpers.py` file:
+
+```python
+import sys
+import re
+from github import GithubException
+from config.settings import GITHUB_URL, PROMPT
+
+def get_repo_from_url(g, github_url):
+    repo_pattern = re.compile(r"github.com/(.+?)/(.+?)/")
+    repo_match = repo_pattern.search(github_url)
+    repo_owner, repo_name = repo_match.group(1), repo_match.group(2)
+    repo = g.get_user(repo_owner).get_repo(repo_name)
+    return repo
+
+def list_images_recursive(repo, path=""):
+    image_files = []
+    try:
+        contents = repo.get_contents(path)
+        for content in contents:
+            if content.type == "dir":
+                image_files.extend(list_images_recursive(repo, content.path))
+            elif content.download_url.lower().endswith((".png", ".jpg", ".jpeg", ".gif", ".svg")):
+                image_files.append(content.download_url)
+    except GithubException:
+        pass
+
+    return image_files
+
+def filter_images_with_openai(image_files, prompt, openai):
+    response = openai.Completion.create(
+        engine="davinci-codex",
+        prompt=f"{prompt} Here's the list of available image files: {', '.join(image_files)}. Which images from the list best fit this description?",
+        temperature=0.4,
+        max_tokens=100,
+        top_p=1.0,
+        frequency_penalty=0.0,
+        presence_penalty=0.0
+    )
+
+    choice_str = response.choices[0].text.strip()
+    choice_pattern = re.compile(r"https:.*?\.(?:png|jpg|jpeg|gif|svg)", re.IGNORECASE)
+    choice_matches = choice_pattern.findall(choice_str)
+
+    if len(choice_matches) <= 8:
+        return choice_matches
+    else:
+        return choice_matches[:8]
+
+def parse_arguments():
+    github_url = GITHUB_URL
+    prompt = PROMPT
+
+    if len(sys.argv) > 1:
+        github_url = sys.argv[1]
+
+    if len(sys.argv) > 2:
+        prompt = sys.argv[2]
+
+    return github_url, prompt
+```
+
+Update the `project/main.py` file:
+
+```python
+import os
+import sys
+import re
+from github import Github
+import openai
+from dotenv import load_dotenv
+from utils.helpers import get_repo_from_url, list_images_recursive, filter_images_with_openai, parse_arguments
+
+# Load environment variables
+load_dotenv()
+
+# Check if GITHUB_TOKEN exists
+if "GITHUB_TOKEN" not in os.environ:
+    raise ValueError("GITHUB_TOKEN is missing.")
+
+# Set OpenAI API Key
+if "OPENAI_API_KEY" not in os.environ:
+    raise ValueError("OPENAI_API_KEY is missing.")
+else:
+    openai.api_key = os.environ["OPENAI_API_KEY"]
+
+# Get arguments
+github_url, prompt = parse_arguments()
+
+# Authenticate with GitHub API
+g = Github(os.environ["GITHUB_TOKEN"])
+repo = get_repo_from_url(g, github_url)
+
+# Get image file list
+image_files = list_images_recursive(repo)
+
+# Use OpenAI API to filter images
+filtered_image_files = filter_images_with_openai(image_files, prompt, openai)
+
+# Print the result
+print("Filtered images:")
+for image in filtered_image_files:
+    print(image)
+```
+
+Include the environment variables in the `.env` file:
+
+```
+GITHUB_TOKEN=your_github_token
+OPENAI_API_KEY=your_openai_api_key
+```
+
+Add a `requirements.txt` file:
+
+```
+PyGithub==1.55
+openai==0.27.0
+requests==2.26.0
+python-dotenv==0.19.2
+```
+
+You should create a `setup.py` file and a `README` file with the appropriate content, such as package description, installation instructions, and usage.
+
+Now, you can run the program with:
+
+```bash
+python project/main.py
+```
+
+The code is now consolidated, and the project structure follows the suggested layout.
+
+Here's the `requirements.txt` file without hardcoded versions:
+
+```
+PyGithub
+openai
+requests
+python-dotenv
+```
+
+Here's the `setup.py` file for the project:
+
+```python
+from setuptools import setup, find_packages
+
+setup(
+    name="github-image-finder",
+    version="0.1",
+    packages=find_packages(),
+    install_requires=[
+        "PyGithub",
+        "openai",
+        "requests",
+        "python-dotenv",
+    ],
+    entry_points={
+        "console_scripts": [
+            "github-image-finder = project.main:main"
+        ]
+    },
+    author="Your Name",
+    author_email="your.email@example.com",
+    description="A Python tool to search for images in a GitHub repo and filter with OpenAI",
+    long_description=open("README").read(),
+    url="https://github.com/your_username/github-image-finder",
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+    ],
+)
+```
+
+Create a `README` file for the project:
+
+```
+# GitHub Image Finder
+
+A Python command-line tool to search and filter images in a GitHub repo using OpenAI.
+
+## Installation
+
+1. Install Python 3.x.
+2. Clone the repository:
+
+   ```
+   git clone https://github.com/your_username/github-image-finder.git
+   ```
+
+3. Change to the project directory:
+
+   ```
+   cd github-image-finder
+   ```
+
+4. Install the required dependencies:
+
+   ```
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+To run the tool, use the following command:
+
+```
+python project/main.py
+```
+
+You can also provide a GitHub repository URL and a custom prompt for filtering:
+
+```
+python project/main.py "https://github.com/example_user/example_repo/tree/main/images" "Images for a specific topic"
+```
+
+Make sure to set the GITHUB_TOKEN and OPENAI_API_KEY environment variables in the .env file before running the script.
+```
+
+Now, you have the `requirements.txt` without hardcoded versions and generated `setup.py` and `README` files for the project. Update the `README` with the proper repository URL and author details.
