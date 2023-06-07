@@ -1,1 +1,3 @@
-# TODO: Write Python Code
+- [ ] Write the main application code
+- [ ] Write any necessary helper functions
+- [ ] Create a configuration file to store settings
