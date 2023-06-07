@@ -1,1 +1,3 @@
-# TODO: Create TODO.md
+- [ ] Create a new file named TODO.md
+- [ ] Write a list of outstanding tasks in the file
+- [ ] Upload the TODO.md file to the GitHub repository
