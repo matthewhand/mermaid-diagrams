@@ -1,1 +1,3 @@
-# TODO: Upload Application
+- [ ] Authenticate with the GitHub API using a token
+- [ ] Push the application code to the GitHub repository
+- [ ] Check the repository to ensure that the code has been uploaded correctly
