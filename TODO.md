@@ -7,3 +7,4 @@
 - [ ] [Create TODO.md](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-create-todo.md)
 - [ ] Implement a docstrings solution that will automatically build documentation from docstrings in the code
 - [ ] Ensure all functions have docstrings comments
+- [ ] Create a README.md in the style of a top tier Github project.  Generate any referenced links i.e. LICENSE, CONTRIBUTION.md.
