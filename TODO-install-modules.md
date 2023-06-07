@@ -1,4 +1,3 @@
-- [ ] Use pip to install the PyGithub module
-- [ ] Install the openai module
-- [ ] Install the requests module
-- [ ] Install the python-dotenv module
+## TODO: Install necessary Python modules
+- [ ] Use pip to install necessary modules
+- [ ] Make use of requirements.txt
