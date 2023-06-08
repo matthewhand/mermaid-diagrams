@@ -2,8 +2,7 @@
 This comprehensive TODO list provides detailed instructions for each step in configuring the AWS Lambda function, setting up SSM parameters, and implementing the Python script to generate Mermaid diagrams based on CloudFormation templates using OpenAI. Follow these instructions to create a functional Mermaid generation system on AWS Lambda.
 
 - [ ] 1. Set up AWS Lambda function:
-  - Log in to the AWS Management Console.
-  - Navigate to the AWS Lambda service.
+  - Ensure boto3 is functional.
   - Click on the "Create function" button.
   - Choose "Author from scratch" and enter a unique name for your Lambda function.
   - Select Python as the runtime environment (e.g., Python 3.8).
