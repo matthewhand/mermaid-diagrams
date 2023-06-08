@@ -13,6 +13,7 @@ pylint_workflow = [workflow for workflow in workflows if workflow.name == 'Pylin
 runs = pylint_workflow.get_runs()
 # Get the failed runs
 failed_runs = [run for run in runs if run.conclusion == 'failure']
-# For each failed run, print the details
-for run in failed_runs:
-    print(f'Run ID: {run.id}, Conclusion: {run.conclusion}, Status: {run.status}')
+# If there are any failed runs, print the details of the latest one
+if failed_runs:
+    run = failed_runs[0]
+    print(f'Latest Failed Run ID: {run.id}, Conclusion: {run.conclusion}, Status: {run.status}')
