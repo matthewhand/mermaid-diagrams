@@ -63,3 +63,9 @@ This comprehensive TODO list provides detailed instructions for each step in con
 - [ ] 10. Deploy updates to the Lambda function:
   - Package and upload the updated Python script and dependencies as a .zip file to your Lambda function.
   - Test the updated Lambda function using the AWS Lambda console or other methods like invoking the function through AWS SDKs or API Gateway.
+
+
+## New Considerations
+1. Consider using AWS Glue for ETL jobs.
+2. Consider using AWS Athena for querying data in S3.
+5. Consider using AWS QuickSight for data visualization.
