@@ -9,7 +9,7 @@ graph LR
   A1(AWS Lambda) --> A5(AWS Step Functions)
   A5(AWS Step Functions) --> A9(Convert Mermaid Syntax<br>to Image Format)
   A9(Convert Mermaid Syntax<br>to Image Format) --> A3(Amazon S3)
-  A1(AWS Lambda) - Fetches SSM<br>parameters --> B(AWS Systems Manager)
+  A1(AWS Lambda - Fetches SSM<br>parameters) --> B(AWS Systems Manager)
   subgraph AWS Services
   A0(API Gateway)
   A1(AWS Lambda) 
@@ -22,7 +22,6 @@ graph LR
   GitHub
   end
   
-  style C4 fill:lightgreen
   style A0 fill:lightblue
   style A1 fill:lightblue
   style A2 fill:lightblue
