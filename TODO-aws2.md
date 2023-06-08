@@ -21,3 +21,5 @@
   - For each repository in the list, use the GitHub API to obtain the repository content and retrieve CloudFormation templates matching the file names specified in the SSM parameter.
   - Prepare a list of possible icons from the GitHub image repository.
   - Generate prompts for OpenAI using the contents of the CloudFormation templates and the list of possible icons.
+
+... continued in TODO-aws3.md.
