@@ -10,6 +10,7 @@ This is a list of tasks that need to be completed for this project (ChatGPT the 
 - [ ] [Write Tests](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-write-tests.md)
 - [ ] [Upload Application](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-upload-application.md)
 - [ ] [Create TODO.md](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-create-todo.md)
+- [ ] [Create README.md](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-create-readme.md)
 - [ ] Implement a docstrings solution that will automatically build documentation from docstrings in the code
 - [ ] Ensure all functions have docstrings comments
-- [ ] Create a README.md in the style of a top tier Github project.  Generate any referenced links i.e. LICENSE, CONTRIBUTION.md.
+
