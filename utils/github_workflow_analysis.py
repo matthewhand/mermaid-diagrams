@@ -16,5 +16,7 @@ failed_runs = [run for run in runs if run.conclusion == 'failure']
 # For each failed run, get the logs
 for run in failed_runs:
     print(f'Run ID: {run.id}')
-    for log in run.get_logs().get_lines():
-        print(log)
+    for job in run.get_jobs():
+        print(f'Job ID: {job.id}')
+        for log in job.get_logs().get_lines():
+            print(log)
