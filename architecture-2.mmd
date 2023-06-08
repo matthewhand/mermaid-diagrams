@@ -1,0 +1,10 @@
+graph LR
+A[Fetch SSM Parameters] --> B[Parse Deployed CloudFormation Templates]
+B --> C[Generate Prompts for OpenAI]
+C --> D[Call OpenAI API with Prompts, Model, and Token Size]
+D --> E[Create Mermaid Diagram Syntax]
+E --> F[Convert Diagram Syntax to Image Format]
+F --> G[Upload Generated Diagrams to Amazon S3 Bucket]
+
+classDef process fill:#f9f7f7,stroke:#333,stroke-width:2px;
+class A,B,C,D,E,F,G process;
