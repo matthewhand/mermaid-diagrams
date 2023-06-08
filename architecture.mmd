@@ -1,0 +1,31 @@
+graph LR
+  A0(API Gateway) -- triggers --> A1(AWS Lambda)
+  A1(AWS Lambda) -- starts --> A5(AWS Step Functions)
+  A5(AWS Step Functions) --> A6(Download GitHub Repos<br>& CloudFormation Templates)
+  A6(Download GitHub Repos<br>& CloudFormation Templates) --> A7(Generate OpenAI Prompts)
+  A7(Generate OpenAI Prompts) --> A2(OpenAI API)
+  A2(OpenAI API) --> A8(Convert OpenAI Output<br>into Mermaid Syntax)
+  A8(Convert OpenAI Output<br>into Mermaid Syntax) --> A1(AWS Lambda)
+  A1(AWS Lambda) --> A5(AWS Step Functions)
+  A5(AWS Step Functions) --> A9(Convert Mermaid Syntax<br>to Image Format)
+  A9(Convert Mermaid Syntax<br>to Image Format) --> A3(Amazon S3)
+  A1(AWS Lambda) - Fetches SSM<br>parameters --> B(AWS Systems Manager)
+  subgraph AWS Services
+  A0(API Gateway)
+  A1(AWS Lambda) 
+  A2(OpenAI API)
+  A3(Amazon S3)
+  A5(AWS Step Functions)
+  B(AWS Systems Manager)
+  end
+  subgraph External Resources
+  GitHub
+  end
+  
+  style C4 fill:lightgreen
+  style A0 fill:lightblue
+  style A1 fill:lightblue
+  style A2 fill:lightblue
+  style A3 fill:lightblue
+  style A5 fill:lightblue
+  style B fill:lightblue
