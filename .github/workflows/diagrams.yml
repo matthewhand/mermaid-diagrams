@@ -1,0 +1,23 @@
+
+name: Diagrams Workflow
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install diagrams
+        pip install graphviz
+    - name: Generate dot file
+      run: python serverless_architecture_diagrams.py > diagram.dot
+    - name: Generate PNG from dot file
+      run: dot -Tpng diagram.dot -o diagram.png
