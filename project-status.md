@@ -6,19 +6,18 @@
 - Set the default Noteable project to the Mermaid Diagrams project.
 - Created a new notebook in the Mermaid Diagrams project.
 - Explored the current challenge using the Tree of Thoughts method and determined the best solution for task prioritization and project management.
+- Developed an algorithm to parse the CloudFormation template and generate a simplified representation.
+- Generated a prompt for OpenAI's GPT-3 model to create a Mermaid diagram based on the CloudFormation template.
 
 ## Next Steps
 
-- Set up a project management tool and create a project board for this project.
-- Add all the tasks from the 'TODO' files to the project board and assign a priority level to each task.
-- Schedule a team meeting to discuss the tasks and their priorities.
-- Start working on the tasks based on their priority levels.
-- Schedule regular team meetings to discuss the progress of the project, any issues or challenges encountered, and the next steps.
-- Update the `project-status.md` file after each cycle of work with the progress of the project, any issues or challenges encountered, and the next steps.
+- Use OpenAI's API to send the generated prompt to GPT-3 and generate the Mermaid diagram.
+- Validate the generated Mermaid diagram.
+- Update the relevant TODO list item after the task is completed.
 
 ## Challenges Encountered
 
-- No major challenges encountered so far.
+- Parsing the CloudFormation template required customizing the YAML loader to handle CloudFormation tags.
 
 ## Issues
 
