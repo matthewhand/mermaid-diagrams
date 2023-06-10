@@ -5,6 +5,7 @@
 - Created a new directory in the GitHub repository called `cloudformation-templates/`
 
 ### Next Steps
-- Define the CloudFormation templates for the required AWS resources, including AWS Lambda function, IAM roles and policies, API Gateway, and SSM Parameters
-- Add the CloudFormation templates to the `cloudformation-templates/` directory
-- Deploy AWS resources using CloudFormation templates
+- Set up AWS Lambda function
+- Modify the Python script to fetch SSM parameters
+- Set up OpenAI Python client
+- Modify the Python script to process CloudFormation templates and generate prompts for OpenAI
