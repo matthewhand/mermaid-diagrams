@@ -5,6 +5,7 @@
 - Created a new directory in the GitHub repository called `cloudformation-templates/`
 - Set up AWS Lambda function
 - Modified the Python script to fetch SSM parameters
+- Updated the `TODO.md` file with links to the `TODO-` files
 
 ### Next Steps
 - Modify the Python script to generate Mermaid diagrams
