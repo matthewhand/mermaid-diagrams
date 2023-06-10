@@ -1,5 +1,5 @@
 
-- [ ] 3. Set up AWS Lambda function:
+- [x] 3. Set up AWS Lambda function:
   - Ensure boto3 is functional.
   - Initialize a new project directory containing your Python script and dependencies.
   - Choose Python as the runtime environment (e.g., Python 3.8).
@@ -7,7 +7,7 @@
   - Deploy the Lambda function using AWS Serverless Application Model (SAM) or another deployment tool.
   - Use boto3 to execute the `create-stack` or `update-stack` command to launch or update the CloudFormation stack with the template that defines your AWS resources.
 
-- [ ] 4. Modify the Python script to fetch SSM parameters:
+- [x] 4. Modify the Python script to fetch SSM parameters:
   - Import the Boto3 library in your Python script to interact with AWS services.
   - Write a function that uses the Boto3 client for AWS Systems Manager to retrieve the values of the SSM parameters.
   - Call the function in your script to fetch the SSM parameter values and use them as needed in your code.
