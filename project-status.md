@@ -1,18 +1,14 @@
 
-## Project Status Update
+# Project Status Report
 
-### Completed Tasks
-- Created a new directory in the GitHub repository called `cloudformation-templates/`
-- Set up AWS Lambda function
-- Modified the Python script to fetch SSM parameters
-- Updated the `TODO.md` file with links to the `TODO-` files
-- Created the `TODO-aws4.md` file with a focus on quality assurance and code testing
+## Tasks Completed
 
-### Next Steps
-- Modify the Python script to generate Mermaid diagrams
-- Modify the Python script to upload Mermaid diagrams to Amazon S3
-- Test the system
-- Document the system
-- Quality Assurance
-- Code Testing
-- Review Completed Tasks
+- Set the default Noteable project
+- Created a new notebook
+- Installed the `pyGitHub` module
+- Retrieved the list of files in the GitHub repository
+
+## Next Steps
+
+- Update the `project-status.md` file in the GitHub repository with this project status report
+- Continue with the tasks as per the TODO files in the GitHub repository
