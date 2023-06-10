@@ -5,7 +5,7 @@ This is a list of tasks that need to be completed for this project (ChatGPT the 
 
 - [x] [Project Structure - Completed](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-project-structure.md)
 - [x] [Install Modules - Completed](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-install-modules.md)
-- [x] [Write Python Code](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-write-python-code.md)
+- [x] [Write Python Code - Completed](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-write-python-code.md)
 - [ ] [Test Application](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-test-application.md)
 - [ ] [Write Tests](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-write-tests.md)
 - [ ] [Upload Application](https://github.com/matthewhand/mermaid-diagrams/blob/main/TODO-upload-application.md)
