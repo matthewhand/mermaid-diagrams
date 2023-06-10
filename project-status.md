@@ -6,9 +6,13 @@
 - Set up AWS Lambda function
 - Modified the Python script to fetch SSM parameters
 - Updated the `TODO.md` file with links to the `TODO-` files
+- Created the `TODO-aws4.md` file with a focus on quality assurance and code testing
 
 ### Next Steps
 - Modify the Python script to generate Mermaid diagrams
 - Modify the Python script to upload Mermaid diagrams to Amazon S3
 - Test the system
 - Document the system
+- Quality Assurance
+- Code Testing
+- Review Completed Tasks
