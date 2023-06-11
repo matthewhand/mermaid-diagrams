@@ -1,0 +1,14 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Resources": {
+        "SsmParameter": {
+            "Type": "AWS::SSM::Parameter",
+            "Properties": {
+                "Name": "MermaidDiagramGeneratorParameter",
+                "Type": "String",
+                "Value": "ParameterValue",
+                "Description": "SSM Parameter for the Mermaid Diagram Generator"
+            }
+        }
+    }
+}
